@@ -1,179 +1,181 @@
 <!DOCTYPE html>
-<html class='animate__animated animate__fadeIn animate__delay-1s' id='mainpage'>
-  <head>
-    <link rel='stylesheet' href='stats/style.css'>
+<html>
+  <head class='animate__animated animate__fadeIn animate__delay-1s' id='mainpage'>
+    <title>Stats</title>
+    <link rel='stylesheet' href='style.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <meta charset='UTF-8' name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset='UTF-8' name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <div><a href='/' class='home'>台</a></div>
-  <div class='spt'>
-    <div class='servers'>
-      Servers<br> <div class='spt-sc'>
-        Count: 42 Servers <br><div class='sspt'>
-          Text-Channels: 9437 <br>
-          Voice-Channels: 342 <br>
-          Threads: 319 <br>
-          Stages: 19 <br>
-        </div>
-        
+  <div class='aa'>
+    <div class='svr'>
+      Server stats: <div class='svrst'>
+        <ul>
+          <li>Servers: ${scount}</li>
+          <li>Text channels: ${tcount}</li>
+          <li>Voice channels: ${vcount}</li>
+        </ul>
       </div>
     </div>
-    <div class='member'>
-      Users<br> <div class='spt-mc'>
-        Count: 17384 Users<br><div class='mspt'>
-          Online: 9347<br>
-          Idle: 291<br>
-          DND: 128<br>
-          Offline: 7618
-        </div>
+    <div class='mem'>
+      Members stats: <div class='memst'>
+        <ul>
+        <li>Users: ${ucount}</li>
+        <li>Online: ${ocount}</li>
+        <li>Idle: ${icount}</li>
+        <li>DND: ${dcount}</li>
+        <li>Offline: ${ofcount}</li>
+        </ul>
       </div>
     </div>
-    <div class='pu'>
-      <div class='ping'>
-        Ping<br> <div class='spt-ping'>
-          111 ms
-        </div>
-      </div>
-      <div class='ut'>
-        Uptime<br> <div class='spt-ut'>
-        10d, 10hr, 11min, 11s
-        </div>
+    <div class='bot'>
+      Bot Stats: <div class='botst'>
+        <ul>
+          <li>Ping: ${ping}</li>
+          <li>Shards: ${shards}</li>
+          <li>Uptime: ${uptime}</li>
+        </ul>
       </div>
     </div>
-    <div class='cr'>
-      <div class='cpu'>
-        CPU<br> <div class='spt-cpu'>
-          5.42/100%
-        </div>
+    <div class='int'>
+      Internals: <div class='intst'>
+        <ul>
+          <li>CPU: ${cpu}</li>
+          <li>RAM: ${ram}</li>
+          <li>Memory: ${mem}</li>
+        </ul>
       </div>
-      <div class='ram'>
-        RAM<br> <div class='spt-ram'>
-         522.88/1024 MiB
-        </div>
-      </div>
-      <div class='mem'>
-        Memory<br><div>
-          276.21/1024 MiB
-      </div></div>
     </div>
   </div>
   <style>
-    #mainpage {
-  background-color: #36393e;
-  background-size: cover;
-  overflow: auto;
-  scroll-behavior: smooth;
-  scrollbar-width: 0;
-  scrollbar-color: transparent transparent;
-  -webkit-scrollbar: none;
-  -ms-overflow-style: none;
-  scrollbar-gutter: stable; 
-}
+    html {
+      background-color: #36393e;
+      background-size: cover;
+      color: #ffffff;
+      overflow: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: 0;
+      scrollbar-color: transparent transparent;
+      -webkit-scrollbar: none;
+      -ms-overflow-style: none;
+      scrollbar-gutter: stable;
+    }
 
-.home {
-  top: 1%;
-  left: 1.9%;
-  position: absolute;
-  font-size: 20px;
-  font-family: "Comic Sans MS", "Comic Sans";
-  color: #ffffff;
-  text-decoration: none;
-  transition: transform 0.5s ease;
-  z-index: 1;
-  border-radius: 15px;
-  padding: 10px;
-  background-color: #2f3136;
-  border: 4px solid transparent;
-}
 
-.spt {
-  display: flex;
-  flex-wrap: wrap;
-}
+    body {
+      overflow-y: scroll;
+      scroll-behavior: smooth;
+    }
 
-.servers,
-.member {
-  position: relative;
-  top: 10%;
-  flex: 0 0 22%;
-  font-size: 20px;
-  font-family: "Comic Sans MS", "Comic Sans";
-  width: 10%;
-  height: 6%;
-  margin-top: 5%;
-  margin-left: 1.5%;
-  padding: 4%;
-  background-color: #2f3136;
-  color: #ffffff;
-}
+    .home {
+      top: 1%;
+      left: 1%;
+      position: absolute;
+      font-size: 20px;
+      font-family: "Comic Sans MS", "Comic Sans";
+      color: #ffffff;
+      text-decoration: none;
+      transition: transform 0.5s ease;
+      z-index: 1;
+      border-radius: 15px;
+      padding: 10px;
+      background-color: #2f3136;
+      border: 4px solid transparent;
+    }
 
-.pu {
-  display: flex;
-  flex-direction: column;
-  margin-top: 4.45%;
-  margin-left: 1.5%;
-}
+    .aa {
+      display: flex;
+      gap: 2%;
+      flex-wrap: wrap;
+      margin-bottom: 5%;
+    }
 
-.ping, .ut {
-  position: relative;
-  width: 110%;
-  height: 100%;
-  background-color: #2f3136;
-  color: #ffffff;
-  font-size: 20px;
-  padding: 11%;
-  font-family: "Comic Sans MS", "Comic Sans";
-}
+    .svr,
+    .mem,
+    .bot,
+    .int {
+      background-color: #2f3136;
+      color: #ffffff;
+      border: 4px solid transparent;
+      border-radius: 15px;
+      padding: 10px;
+      font-family: "Comic Sans MS", "Comic Sans";
+      font-size: 20px;
+      height: 1%;
+      position: relative;
+      left: 2%;
+      margin-top: 5%;
+      flex: 0 0 21%;
+      transition: transform 0.5s ease, padding 0.5s ease, box-shadow 0.5s ease;
+      z-index: 0;
+      overflow: visible;
+    }
 
-.ping {
-  margin-top: 5%;
-}
+    .svrst, .memst, .botst, .intst {
+      margin-left: 5%;
+      margin-top: -4%;
+    }
 
-.ut {
-  margin-top: 13%;
-  margin-right: 2%;
-}
+    .svr::before,
+    .mem::before,
+    .bot::before,
+    .int::before {
+      content: "";
+      position: absolute;
+      border-radius: 19px;
+      top: -4px;
+      bottom: -4px;
+      left: -4px;
+      right: -4px;
+      background: linear-gradient(270deg,
+          pink, white, violet, plum, orchid, #87CEEB, #FF69B4, beige);
+      background-size: 1600% 1600%;
+      filter: blur(8px);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      z-index: -1;
+      mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      -webkit-mask-composite: destination-out;
 
-.cr {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 245px;
-  margin-top: 4.70%;
-  margin-left: 4.3%;
-}
+      padding: 4px;
+      box-sizing: border-box;
+    }
 
-.cpu, .ram, .mem {
-  width: 110%;
-  background-color: #2f3136;
-  color: #ffffff;
-  font-size: 20px;
-  padding: 7.8%;
-  font-family: "Comic Sans MS", "Comic Sans";
-  margin: 3%;
-}
+    .svr:hover::before,
+    .mem:hover::before,
+    .bot:hover::before,
+    .int:hover::before {
+      opacity: 1;
+      animation: rainbowMove 8s linear infinite;
+    }
 
-.mem {
-  margin-top: 5.5%;
-}
+    .bot:hover,
+    .svr:hover,
+    .mem:hover,
+    .int:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+      padding: 15px;
+    }
 
-.spt-ping,
-.spt-sc,
-.spt-mc,
-.spt-ut,
-.spt-cpu,
-.spt-ram {
-  margin-top: 1%;
-  margin-left: 5%;
-  font-size: 20px;
-  font-family: "Comic Sans MS", "Comic Sans";
-}
+    @keyframes rainbowMove {
+      0% {
+        background-position: 0% 50%;
+      }
 
-.sspt, .mspt {
-  margin-top: 1%;
-  margin-left: 5%;
-  font-size: 20px;
-  font-family: "Comic Sans MS", "Comic Sans";
-}
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
   </style>
 </html>
